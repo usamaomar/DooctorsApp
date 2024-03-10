@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983220763437",
+    "project_id": "doctors-app-es1gkx",
+    "storage_bucket": "doctors-app-es1gkx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983220763437:android:162d8fbe9833867c11f1a4",
+        "android_client_info": {
+          "package_name": "com.eliet.doctorsapp.usama.khateeb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG0zedN1vFv67CDscbVXMdYfbfjW1QZGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
