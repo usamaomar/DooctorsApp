@@ -25,6 +25,6 @@ dynamic fromUserModelToJson(UsersRecord userModel) {
   };
 }
 
-UsersRecord fromJsonToUserModel(dynamic json) {
-  return UsersRecord();
-}
+// UsersRecord fromJsonToUserModel(dynamic json) {
+//   return UsersRecord();
+// }
