@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/backend/schema/enums/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -21,9 +23,11 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       if (prefs.containsKey('ff_userModel')) {
         try {
-          _userModel = jsonDecode(prefs.getString('ff_userModel') ?? '');
+          final serializedData = prefs.getString('ff_userModel') ?? '{}';
+          _userModel =
+              UserModelStruct.fromSerializableMap(jsonDecode(serializedData));
         } catch (e) {
-          print("Can't decode persisted json. Error: $e.");
+          print("Can't decode persisted data type. Error: $e.");
         }
       }
     });
@@ -36,11 +40,16 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  dynamic _userModel;
-  dynamic get userModel => _userModel;
-  set userModel(dynamic value) {
-    _userModel = value;
-    prefs.setString('ff_userModel', jsonEncode(value));
+  UserModelStruct _userModel = UserModelStruct();
+  UserModelStruct get userModel => _userModel;
+  set userModel(UserModelStruct _value) {
+    _userModel = _value;
+    prefs.setString('ff_userModel', _value.serialize());
+  }
+
+  void updateUserModelStruct(Function(UserModelStruct) updateFn) {
+    updateFn(_userModel);
+    prefs.setString('ff_userModel', _userModel.serialize());
   }
 }
 

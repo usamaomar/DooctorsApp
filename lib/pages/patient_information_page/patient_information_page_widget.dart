@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/drawer_component/drawer_component_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'patient_information_page_model.dart';
 export 'patient_information_page_model.dart';
 
@@ -54,7 +55,7 @@ class _PatientInformationPageWidgetState
           child: wrapWithModel(
             model: _model.drawerComponentModel,
             updateCallback: () => setState(() {}),
-            child: const DrawerComponentWidget(
+            child: DrawerComponentWidget(
               pageNameEnum: PageNameEnum.PatientInformation,
             ),
           ),
@@ -80,7 +81,7 @@ class _PatientInformationPageWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '405jcjrl' /* Patient Information */,
@@ -97,14 +98,14 @@ class _PatientInformationPageWidgetState
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+            padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -117,7 +118,7 @@ class _PatientInformationPageWidgetState
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -127,13 +128,13 @@ class _PatientInformationPageWidgetState
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 15.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
                               child: TextFormField(
                                 controller: _model.textController,
@@ -192,13 +193,13 @@ class _PatientInformationPageWidgetState
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 15.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () {
@@ -209,10 +210,10 @@ class _PatientInformationPageWidgetState
                                       ),
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -231,7 +232,7 @@ class _PatientInformationPageWidgetState
                                                           .titleSmallFamily),
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -250,7 +251,7 @@ class _PatientInformationPageWidgetState
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -263,9 +264,9 @@ class _PatientInformationPageWidgetState
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -279,7 +280,7 @@ class _PatientInformationPageWidgetState
                                           .titleSmallFamily),
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -291,7 +292,7 @@ class _PatientInformationPageWidgetState
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -300,7 +301,7 @@ class _PatientInformationPageWidgetState
                           width: 1.0,
                         ),
                       ),
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 15.0),
                         child: Column(

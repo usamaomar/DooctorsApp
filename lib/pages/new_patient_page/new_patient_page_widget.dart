@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'new_patient_page_model.dart';
 export 'new_patient_page_model.dart';
 
@@ -128,7 +131,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '0lkm87jc' /* Add New Patient  */,
@@ -145,14 +148,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, 1.0),
+            alignment: AlignmentDirectional(0.0, 1.0),
             child: Stack(
               children: [
                 SingleChildScrollView(
@@ -161,7 +164,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 15.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -186,14 +189,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController1,
                           focusNode: _model.textFieldFocusNode1,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController1',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -254,10 +257,10 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: Autocomplete<String>(
-                          initialValue: const TextEditingValue(),
+                          initialValue: TextEditingValue(),
                           optionsBuilder: (textEditingValue) {
                             if (textEditingValue.text == '') {
                               return const Iterable<String>.empty();
@@ -319,7 +322,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               onSelected: onSelected,
                               textStyle:
                                   FlutterFlowTheme.of(context).bodyMedium,
-                              textHighlightStyle: const TextStyle(),
+                              textHighlightStyle: TextStyle(),
                               elevation: 4.0,
                               optionBackgroundColor:
                                   FlutterFlowTheme.of(context)
@@ -350,7 +353,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               onEditingComplete: onEditingComplete,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textController2',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
                               textInputAction: TextInputAction.next,
@@ -416,14 +419,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController3,
                           focusNode: _model.textFieldFocusNode3,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController3',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -488,7 +491,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 25.0, 15.0, 15.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -513,7 +516,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -521,7 +524,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            final datePickedDate = await showDatePicker(
+                            final _datePickedDate = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
@@ -562,12 +565,12 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               },
                             );
 
-                            if (datePickedDate != null) {
+                            if (_datePickedDate != null) {
                               safeSetState(() {
                                 _model.datePicked = DateTime(
-                                  datePickedDate.year,
-                                  datePickedDate.month,
-                                  datePickedDate.day,
+                                  _datePickedDate.year,
+                                  _datePickedDate.month,
+                                  _datePickedDate.day,
                                 );
                               });
                             }
@@ -584,7 +587,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(5.0),
                                 bottomRight: Radius.circular(5.0),
                                 topLeft: Radius.circular(5.0),
@@ -596,7 +599,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 12.0, 10.0, 12.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -608,7 +611,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                     size: 24.0,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       _model.dateText,
@@ -635,14 +638,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController4,
                           focusNode: _model.textFieldFocusNode4,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController4',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -703,10 +706,10 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: Autocomplete<String>(
-                          initialValue: const TextEditingValue(),
+                          initialValue: TextEditingValue(),
                           optionsBuilder: (textEditingValue) {
                             if (textEditingValue.text == '') {
                               return const Iterable<String>.empty();
@@ -750,7 +753,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               onSelected: onSelected,
                               textStyle:
                                   FlutterFlowTheme.of(context).bodyMedium,
-                              textHighlightStyle: const TextStyle(),
+                              textHighlightStyle: TextStyle(),
                               elevation: 4.0,
                               optionBackgroundColor:
                                   FlutterFlowTheme.of(context)
@@ -781,7 +784,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                               onEditingComplete: onEditingComplete,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textController5',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
                               textInputAction: TextInputAction.next,
@@ -847,14 +850,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController6,
                           focusNode: _model.textFieldFocusNode6,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController6',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -915,14 +918,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController7,
                           focusNode: _model.textFieldFocusNode7,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController7',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -983,14 +986,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController8,
                           focusNode: _model.textFieldFocusNode8,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController8',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1052,14 +1055,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController9,
                           focusNode: _model.textFieldFocusNode9,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController9',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1121,14 +1124,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController10,
                           focusNode: _model.textFieldFocusNode10,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController10',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1190,14 +1193,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController11,
                           focusNode: _model.textFieldFocusNode11,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController11',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1259,14 +1262,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController12,
                           focusNode: _model.textFieldFocusNode12,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController12',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1328,14 +1331,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController13,
                           focusNode: _model.textFieldFocusNode13,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController13',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1397,14 +1400,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController14,
                           focusNode: _model.textFieldFocusNode14,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController14',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1466,14 +1469,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController15,
                           focusNode: _model.textFieldFocusNode15,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController15',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1535,14 +1538,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController16,
                           focusNode: _model.textFieldFocusNode16,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController16',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.next,
@@ -1604,14 +1607,14 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 15.0, 15.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController17,
                           focusNode: _model.textFieldFocusNode17,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController17',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
                           textInputAction: TextInputAction.done,
@@ -1687,13 +1690,13 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                   localListOfUplodedPathes[
                                       localListOfUplodedPathesIndex];
                               return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(5.0),
                                       bottomRight: Radius.circular(5.0),
                                       topLeft: Radius.circular(5.0),
@@ -1706,7 +1709,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 10.0, 5.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1715,7 +1718,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Text(
                                             localListOfUplodedPathesIndex
@@ -1742,7 +1745,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 8.0),
                                           child: Icon(
                                             Icons.remove_circle,
@@ -1761,7 +1764,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                         },
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 75.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -1835,7 +1838,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 10.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
@@ -1862,16 +1865,16 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  alignment: AlignmentDirectional(0.0, 1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Flexible(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 0.0, 15.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -1887,10 +1890,10 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1907,7 +1910,7 @@ class _NewPatientPageWidgetState extends State<NewPatientPageWidget> {
                                                         .titleSmallFamily),
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),

@@ -1,7 +1,12 @@
+import '/backend/schema/enums/enums.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/components/drawer_component/drawer_component_widget.dart';
 import 'patient_information_page_widget.dart' show PatientInformationPageWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PatientInformationPageModel
     extends FlutterFlowModel<PatientInformationPageWidget> {

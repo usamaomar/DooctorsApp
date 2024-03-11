@@ -1,13 +1,15 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -72,7 +74,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             await UsersRecord.collection.doc().set(createUsersRecordData());
           },
           child: Stack(
-            alignment: const AlignmentDirectional(1.0, 0.0),
+            alignment: AlignmentDirectional(1.0, 0.0),
             children: [
               Container(
                 width: double.infinity,
@@ -107,12 +109,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                   child: Container(
                     width: 350.0,
                     decoration: BoxDecoration(
-                      color: const Color(0x63FFFFFF),
-                      borderRadius: const BorderRadius.only(
+                      color: Color(0x63FFFFFF),
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(5.0),
                         bottomRight: Radius.circular(5.0),
                         topLeft: Radius.circular(5.0),
@@ -136,7 +138,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 30.0, 15.0, 30.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -159,7 +161,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 0.0, 15.0, 0.0),
                               child: TextFormField(
                                 controller: _model.textController1,
@@ -206,7 +208,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xC4F1F4F8),
+                                  fillColor: Color(0xC4F1F4F8),
                                   prefixIcon: Icon(
                                     Icons.person,
                                     color: FlutterFlowTheme.of(context)
@@ -221,7 +223,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 15.0, 15.0, 10.0),
                               child: TextFormField(
                                 controller: _model.textController2,
@@ -268,7 +270,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   filled: true,
-                                  fillColor: const Color(0xC4F1F4F8),
+                                  fillColor: Color(0xC4F1F4F8),
                                   prefixIcon: Icon(
                                     Icons.lock,
                                     color: FlutterFlowTheme.of(context)
@@ -299,7 +301,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -331,14 +333,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 15.0, 20.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 15.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -367,14 +369,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                         ?.clinicsRefrence?.id !=
                                                     '') {
                                               setState(() {
-                                                _model.userDocs =
-                                                    _model.outPutLogIn;
-                                              });
-                                              setState(() {
                                                 FFAppState().userModel =
-                                                    functions
-                                                        .fromUserModelToJson(
-                                                            _model.userDocs!)!;
+                                                    UserModelStruct(
+                                                  userModelDocs: _model
+                                                      .outPutLogIn?.reference,
+                                                );
                                               });
                                               if (Navigator.of(context)
                                                   .canPop()) {
@@ -387,15 +386,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 context: context,
                                                 builder: (alertDialogContext) {
                                                   return AlertDialog(
-                                                    title: const Text('Error'),
-                                                    content: const Text(
+                                                    title: Text('Error'),
+                                                    content: Text(
                                                         'Access is invalid'),
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 alertDialogContext),
-                                                        child: const Text('Ok'),
+                                                        child: Text('Ok'),
                                                       ),
                                                     ],
                                                   );
@@ -412,10 +411,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           options: FFButtonOptions(
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -436,7 +435,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                   .titleSmallFamily),
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
