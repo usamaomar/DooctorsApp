@@ -1,11 +1,9 @@
-import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'drawer_component_model.dart';
 export 'drawer_component_model.dart';
 
@@ -48,14 +46,14 @@ class _DrawerComponentWidgetState extends State<DrawerComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xFFFDFDFD),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(0.0),
               child: Image.network(
@@ -76,7 +74,7 @@ class _DrawerComponentWidgetState extends State<DrawerComponentWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: SvgPicture.asset(
@@ -101,7 +99,7 @@ class _DrawerComponentWidgetState extends State<DrawerComponentWidget> {
           ),
           Flexible(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: widget.pageNameEnum == PageNameEnum.PatientInformation
@@ -110,7 +108,7 @@ class _DrawerComponentWidgetState extends State<DrawerComponentWidget> {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(15.0, 18.0, 15.0, 18.0),
+                      const EdgeInsetsDirectional.fromSTEB(15.0, 18.0, 15.0, 18.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -125,7 +123,7 @@ class _DrawerComponentWidgetState extends State<DrawerComponentWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(

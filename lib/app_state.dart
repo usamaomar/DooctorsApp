@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -42,9 +41,9 @@ class FFAppState extends ChangeNotifier {
 
   UserModelStruct _userModel = UserModelStruct();
   UserModelStruct get userModel => _userModel;
-  set userModel(UserModelStruct _value) {
-    _userModel = _value;
-    prefs.setString('ff_userModel', _value.serialize());
+  set userModel(UserModelStruct value) {
+    _userModel = value;
+    prefs.setString('ff_userModel', value.serialize());
   }
 
   void updateUserModelStruct(Function(UserModelStruct) updateFn) {
